@@ -133,7 +133,7 @@ c = get_config()  # noqa
 #
 #          Takes precedence over allow_origin_pat.
 #  Default: ''
-# c.NotebookApp.allow_origin = ''
+# c.NotebookApp.allow_origin = '*'
 
 # Use a regular expression for the Access-Control-Allow-Origin header
 #
@@ -347,7 +347,7 @@ c = get_config()  # noqa
 
 # The IP address the notebook server will listen on.
 #  Default: 'localhost'
-# c.NotebookApp.ip = 'localhost'
+# c.NotebookApp.ip = '0.0.0.0'
 
 # Supply extra arguments that will be passed to Jinja environment.
 #  Default: {}
