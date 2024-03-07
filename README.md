@@ -1,3 +1,47 @@
+# Cherry Leaves Mildew Detection
+
+## Introduction
+Farmy & Foods have a mildew problem. Their cherry plantation operations have a growing powdery mildew issue. Powdery mildew typically starts off as small white circular spots on the surface of leaves, and as the mildew progresses the spots may expand to cover the entire surface of each leaf. Infected leaves may become distorted, curl and fall from the tree. The disease deprives plants of water and nutrients, impacting their growth, blooming and development. 
+
+The current system of manual inspection can take 30 minutes per tree, plus the time to apply treatment if necessary. Farmy & Foods' operation spans thousands of trees across multiple locations, rendering the manual process inadequate. 
+
+With this in mind, a machine-learning system has been proposed to detect powdery mildew in cherry leaf images, greatly increasing the speed of detection. 
+
+The !(dataset)[https://www.kaggle.com/codeinstitute/cherry-leaves] input comprises of over 4200 cherry leaf images from Farmy & Foods, pre-labelled healthy [uninfected] or unhealthy [infected with powdery mildew]. 
+
+## Business Case Assessment
+### The business requirements are:
+- The client is interested in conducting a study to visually differentiate a cherry leaf that is healthy from one that is infected with powdery mildew.
+- The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew based on visual analysis.
+- A 97% degree of accuracy has been agreed.
+- The client requires a dashboard to view the results. 
+- The client provided the data under an NDA (non-disclosure agreement), therefore the data should only be shared with professionals that are officially involved in the project, for ethical and privacy reasons.
+
+## The benefit for the client is:
+- Manual checking - shown to be unscalable for an operation of this magnitude - will be minimised.
+- They will be able to ensure that the product they supply to the market is not compromised.
+- The spread of powdery mildew can be controlled with early diagnosis and treatment of infected plants.
+
+### The data analyst will therefore:
+- Use inputs of cherry leaf images known to be either healthy or infected with mildew to train an image analysis model.
+- Use known data to train the model to be able to predict whether unknown images are infected or not.
+- Analysis will be conducted on both average and variability images for both healthy and unhealthy leaves.
+- A binary classifier will be used to give a simple Healthy/Unhealthy output, with a calculation of the expected accuracy on each image. 
+- There will be an image montage for each of the two classes.
+
+### The dashboard will include:
+- A project summary page.
+- A page listing the findings related to the study to visually differentiate healthy and mildew-infected leaves.
+- A page containing a link to download cherry-leaf images for live prediction, and a user interface with a file uploader. The user must be able to upload multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present. A downloadable table with the results must also be available.
+- A project hypothesis page, with details of how it was validated.
+- A more technical page for data analysts displayinng model performance. 
+
+
+
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 ## Codeanywhere Template Instructions
