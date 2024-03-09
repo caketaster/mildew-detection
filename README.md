@@ -1,23 +1,23 @@
 # Cherry Leaves Mildew Detection
 
 ## Introduction
-Farmy & Foods have a mildew problem. Their cherry plantation operations have a growing powdery mildew issue. Powdery mildew typically starts off as small white circular spots on the surface of leaves, and as the mildew progresses the spots may expand to cover the entire surface of each leaf. Infected leaves may become distorted, curl and fall from the tree. The disease deprives plants of water and nutrients, impacting their growth, blooming and development. 
+Farmy & Foods have a mildew problem. Their cherry plantation operations have a growing powdery mildew issue. Powdery mildew, a fungal disease that affects many plant species, typically starts off as small white circular spots on the surface of leaves, and as the mildew progresses the spots may expand to cover the entire surface of each leaf. Infected leaves may become distorted, curl and fall from the tree. The disease deprives plants of water and nutrients, impacting their growth, blooming and development. 
 
 The current system of manual inspection can take 30 minutes per tree, plus the time to apply treatment if necessary. Farmy & Foods' operation spans thousands of trees across multiple locations, rendering the manual process inadequate. 
 
 With this in mind, a machine-learning system has been proposed to detect powdery mildew in cherry leaf images, greatly increasing the speed of detection. 
 
-The !(dataset)[https://www.kaggle.com/codeinstitute/cherry-leaves] input comprises of over 4200 cherry leaf images from Farmy & Foods, pre-labelled healthy [uninfected] or unhealthy [infected with powdery mildew]. 
+The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprises of over 4200 cherry leaf images from Farmy & Foods, pre-labelled healthy [uninfected] or unhealthy [infected with powdery mildew]. 
 
 ## Business Case Assessment
 ### The business requirements are:
-- The client is interested in conducting a study to visually differentiate a cherry leaf that is healthy from one that is infected with powdery mildew.
-- The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew based on visual analysis.
-- A 97% degree of accuracy has been agreed.
-- The client requires a dashboard to view the results. 
-- The client provided the data under an NDA (non-disclosure agreement), therefore the data should only be shared with professionals that are officially involved in the project, for ethical and privacy reasons.
+<ol><li> The client is interested in conducting a study to visually differentiate a cherry leaf that is healthy from one that is infected with powdery mildew.</li>
+<ul><li>a. The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew based on visual analysis.</li>
+<li>b. A 97% degree of accuracy has been agreed.</li></ul>
+<li> The client requires a dashboard to view the results. </li>
+<li> The client provided the data under an NDA (non-disclosure agreement), therefore the data should only be shared with professionals that are officially involved in the project, for ethical and privacy reasons.</li></ol>
 
-## The benefit for the client is:
+### The benefit for the client is:
 - Manual checking - shown to be unscalable for an operation of this magnitude - will be minimised.
 - They will be able to ensure that the product they supply to the market is not compromised.
 - The spread of powdery mildew can be controlled with early diagnosis and treatment of infected plants.
@@ -29,7 +29,10 @@ The !(dataset)[https://www.kaggle.com/codeinstitute/cherry-leaves] input compris
 - A binary classifier will be used to give a simple Healthy/Unhealthy output, with a calculation of the expected accuracy on each image. 
 - There will be an image montage for each of the two classes.
 
-### The dashboard will include:
+## Hypothesis and Validation:
+* List here your project hypothesis(es) and how you envision validating it (them).
+
+## Dashboard design:
 - A project summary page.
 - A page listing the findings related to the study to visually differentiate healthy and mildew-infected leaves.
 - A page containing a link to download cherry-leaf images for live prediction, and a user interface with a file uploader. The user must be able to upload multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present. A downloadable table with the results must also be available.
@@ -37,10 +40,59 @@ The !(dataset)[https://www.kaggle.com/codeinstitute/cherry-leaves] input compris
 - A more technical page for data analysts displayinng model performance. 
 
 
+## Unfixed Bugs
+* You will need to mention unfixed bugs and why they were unfixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable for consideration, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+
+## Deployment
+### Heroku
+
+* The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
+* Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
+* The project was deployed to Heroku using the following steps.
+
+1. Log in to Heroku and create a new App
+2. At the Deploy tab, select GitHub as the deployment method.
+3. Select the repository name and click Search. Once it is found, click Connect.
+4. Select the branch you want to deploy (typically Main), then click Deploy Branch.
+5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
+6. If the slug size is too large then add large files not required for the app to the .slugignore file. 
+
+## Main Data Analysis and Machine Learning Libraries
+* Here you should list the libraries used in the project and provide an example(s) of how you used these libraries.
+
+## Credits 
+
+* In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism. 
+* You can break the credits section up into Content and Media, depending on what you have included in your project. 
+
+### Content 
+
+- The text for the Home page was taken from Wikipedia Article A.
+- Instructions on how to implement form validation on the Sign-Up page were taken from [Specific YouTube Tutorial](https://www.youtube.com/).
+- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/).
+
+### Media
+
+- The photos used on the home and sign-up page are from This Open-Source site.
+- The images used for the gallery page were taken from this other open-source site.
+
+
+## Acknowledgements (optional)
+* Thank the people that provided support throughout this project.
 
 
 
 
+
+n.b.
+## ML Business Case
+* In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
+
+- need to check course materials
+
+
+
+------------------
 
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
