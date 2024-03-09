@@ -92,6 +92,14 @@ n.b.
 
 
 
+
+
+
+no img augmentation as 2100 each is enough
+image size is 256,256. 4000+ imgs at this size is too big for a regular heroku deployment, so images are resized to 80,80
+av. img is a black image. can I edit this to make it better..?
+in data_visualisation I've copied Diff and Montage functions directly. Edit to make them more personalised
+
 ------------------
 
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
