@@ -5,7 +5,7 @@ Farmy & Foods have a mildew problem. Their cherry plantation operations have a g
 
 The current system of manual inspection can take 30 minutes per tree, plus the time to apply treatment if necessary. Farmy & Foods' operation spans thousands of trees across multiple locations, rendering the manual process inadequate. 
 
-With this in mind, a machine-learning system has been proposed to detect powdery mildew in cherry leaf images, greatly increasing the speed of detection. 
+With this in mind, a machine-learning system has been proposed to detect powdery mildew in cherry leaf images, greatly increasing the speed of detection. All that will be needed is a photograph of a leaf from a tree and for that image to be fed into the ML model to discern if powdery mildew is present.
 
 The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprises of over 4200 cherry leaf images from Farmy & Foods, pre-labelled healthy [uninfected] or unhealthy [infected with powdery mildew]. 
 
@@ -95,11 +95,50 @@ n.b.
 
 
 
-no img augmentation as 2100 each is enough
-image size is 256,256. 4000+ imgs at this size is too big for a regular heroku deployment, so images are resized to 80,80
+no img augmentation as 2100 each is enough(?) ~ do I need augmentation??
+image size is 256,256. 4000+ imgs at this size is too big for a regular heroku deployment, so images are resized to 80,80 (I haven't actually done this... got to work out how exactly)
 av. img is a black image. can I edit this to make it better..?
 in data_visualisation I've copied Diff and Montage functions directly. Edit to make them more personalised
 We're using a CNN model (convolutional neural network), binary classifier
+Think: CRISP-DM, AGILE - justify decisions made using these frameworks
+
+quote from video (re: base CI model for malaria detection): Convolution layers are used to select the dominant pixel value
+from the non-dominant pixels in images using filters whereas the max-pooling layers reduce
+the size of image by extracting only the dominant pixels within the pool size. This reduced image
+only contains the dominant feature of the image. The combination of these two layers removes
+the nonessential part of the image and reduces complexity, therefore providing more accuracy.
+Here, in our model, we have used filters of a 3 by 3 matrix and their numbers are varied from
+32 to 64, the pool size for the max-pooling layer is a 2 by 2 matrix. The input image shape in the
+first convolution layer is served as the average image shape from the data visualization video.
+As well as this, the flatten layer is used to flatten the matrix into a vector,
+which means a single list of all values, and to
+feed it into a dense layer. The dense layer then does the mathematical operation
+and gives the output. In our model, we have used 128 nodes in one of our Dense layers,
+and 1 node in the output dense layer, because we want single output at a time using the sigmoid
+activation function. This output activation function defines the probabilistic result.
+Finally, the Dropout layer is used in this network to drop 50 percent of the nodes
+to avoid overfitting the model.
+We use a combination of all these layers to develop a convolution neural network,
+which we will use in the final prediction tasks.
+The activation function in the output layer is sigmoid. The loss, optimizer,
+and metrics used in the model compiler are binary cross-entropy, adam, and accuracy respectively.
+These three hyperparameters along with the activation function of the output layer
+which control the classification and regression problems.
+
+tweaking: relu, adam, kernel_size, filters
+> For binary classification, we use binary cross-entropy as the loss function,
+*adam, rmspro, SGD or any other function as an optimizer* and accuracy as metrics, along
+with sigmoid as an activation function in the output layer (1 node instead of the 2 needed for softmax).
+
+Hyperparameters tune the model parameters so that we can control the performance of the model.
+In our model, we have used dropout, loss, optimizer, and nodes in the dense layer as
+the hyperparameter that can be tuned to control the model performance. However, *the selection
+of the optimum hyperparameter value is a trial and error type method. Hence, we use different model
+tuning functions present in the Keras packages.* I recommend reading more about hyperparameter
+tuning in TensorFlow and Keras on your own and trying to tune models later to see their effect.
+One more piece of information about convolution neural network performance tuning is that
+*we use transfer learning techniques which are trained layers of neural networks. Read more
+about transfer learning on Tensorflow and Keras documentation to learn more about this technology*.
 
 ------------------
 
