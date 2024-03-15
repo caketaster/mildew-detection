@@ -101,6 +101,7 @@ av. img is a black image. can I edit this to make it better..?
 in data_visualisation I've copied Diff and Montage functions directly. Edit to make them more personalised
 We're using a CNN model (convolutional neural network), binary classifier
 Think: CRISP-DM, AGILE - justify decisions made using these frameworks
+model: tested: adam, adagrad, SGD, Adadelta, Nadam
 
 quote from video (re: base CI model for malaria detection): Convolution layers are used to select the dominant pixel value
 from the non-dominant pixels in images using filters whereas the max-pooling layers reduce
