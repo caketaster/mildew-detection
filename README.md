@@ -33,17 +33,57 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 - There will be an image montage for each of the two classes.
 
 ## Hypothesis and Validation:
+- We can hypothesise that it's possible to visually differentiate between healthy and mildew infected leaves.
 - As the data analyst, I believe it's possible to train an ML model to differentiate between health/mildew infected leaves through visual analysis of images at a greater than 97% accuracy rate.
 
+The initial hypothesis can be confirmed by the fact that manual visual differentiation already occurs at Framy & Foods (albeit at a slow and hard to scale level)
+
+The second hypothesis was be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. An accuracy rate of 99.7+% was reached. 
+
 ## Dashboard design: (~~check order and page titles)
-- A project summary page.
-- A project hypothesis page, with details of how it was validated.
-- A page containing a link to download cherry-leaf images for live prediction, and a user interface with a file uploader. The user must be able to upload multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present. A downloadable table with the results must also be available.
-- A page listing the findings related to the study to visually differentiate healthy and mildew-infected leaves.
-- A more technical page for data analysts displayinng model performance. 
+The Streamlit dashboard contains 5 pages:
+- <b>A project summary page.</b><br>
+The project is here briefly summarised for the reader or client
+
+- <b>A project hypothesis page, with details of how the main hypothesis was validated.</b>
+The main hypothesis is stated and brief information given on how it was validated.
+
+- <b>A page containing a link to download cherry-leaf images for live prediction, and a user interface with a file uploader. </b><br>
+Using the download link, the user can download the entire dataset used in training and testing the presented model. The user must then be able to upload single or multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present. A downloadable table with the results must also be available. ~~ is this here? test and find out
+
+- <b>A page listing the findings related to the study to visually differentiate healthy and mildew-infected leaves.</b><br>
+This page contains information related to the Data Visualisation step of the project, showing a montage for healthy/mildew infected leaves on request, and average/difference images of both healthy and infected leaves.
+
+- <b>A more technical page for data analysts displaying model performance. </b><br>
+Here the more technical aspects of the project will be discussed, incuding the preparation steps taken and how the models performed.
+
+
+## Notebooks
+The project contains 4 Jupyter notebooks.
+- <b>Data Collection</b><br>
+This notebook is where the dataset is downloaded from Kaggle, uploaded to GitPod, any non-image files removed and the images split into train, validation and test sets with a standard 70/10/20 ratio split. 
+
+- <b>Data Visualisation</b>
+
+- <b>Modelling and Evaluation 1 - Softmax model</b><br>
+The images go through an augmentation process, where the images are rotated, sheared, zoomed, flipped and rescaled in order to create a more random imageset (~ that is harder for the model to memorise?). The first model (using a Softmax ~~ ) is created and tested. 
+
+- <b>Modelling and Evaluation 2 - Sigmoid model</b><br>
+The images are again augmented, as before (the pre-augmented images cannot be used as a variable is required to be set differently for Sigmoid and Softmax models). A Sigmoid output model is then created, and then tested and tuned by chaging various hyperparameters
+
+## Explanation and logical basis for models
+### Softmax
+Softmax models are most often used for categorical classification tasks where there are 3 or more categories to be distinguished between (is this image a tree, lampost or traffic light, is this image a house, apartment or shed etc). The model requires these classifications to be encoded as digits [0, 1, 2 etc] and the output is one of these digits, which we can then translate back into more easily understood language. Softmax models can, of course, also be used for binary classification tasks such as the project we're working on. <br>
+The model consists of ~~
+In a Softmax model, 
+
+### Sigmoid
+Sigmoid models are more commonly used for binary classifcation tasks where the output is either category 1 or category 2 (dog or cat, cup or plate, healthy or unhealthy). Classification labels are encoded as digits [0, 1] and the single output is either a zero or a one, which is then mapped back onto the human-understandable labels. <br>
+The model consists of ~~
 
 
 ## Unfixed Bugs
+~~none?
 * You will need to mention unfixed bugs and why they were unfixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable for consideration, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
 
 ## Deployment (~~yet to be done)

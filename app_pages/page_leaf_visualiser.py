@@ -43,16 +43,8 @@ def page_leaf_visualiser_body():
       )
       st.write("---")
 
-    # if st.checkbox("Differences between average infected and average uninfected leaves"):
-    #       diff_between_avgs = plt.imread(f"outputs/{version}/avg_diff.png")
 
-    #     #   st.warning(
-    #     #     f"* This study shows visual differences in healthy and infected images "
-    #     #     f"and the average user can intuitively differentiate one from another.")
-    #       st.image(diff_between_avgs, caption='Difference between average images')
-
-    
-
+# Is this repeated code? need to refactor anything saggy and make sure I haven't repeated myself...
 
 # Function to create the montage
 def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10,8)):
