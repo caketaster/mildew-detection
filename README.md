@@ -5,9 +5,12 @@ Farmy & Foods have a mildew problem. Their cherry plantation operations have a g
 
 The current system of manual inspection can take 30 minutes per tree, plus the time to apply treatment if necessary. Farmy & Foods' operation spans thousands of trees across multiple locations, rendering the manual process inadequate. 
 
-With this in mind, a machine-learning system has been proposed to detect powdery mildew in cherry leaf images, greatly increasing the speed of detection. All that will be needed is a photograph of a leaf from a tree and for that image to be fed into the ML model to discern if powdery mildew is present.
+With this in mind, a machine learning system has been proposed to detect powdery mildew in cherry leaf images, greatly increasing the speed of detection. All that will be needed is a photograph of a leaf from a tree and for that image to be fed into the ML model to discern whether powdery mildew is present.
 
-The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprises of over 4200 cherry leaf images from Farmy & Foods, pre-labelled healthy [uninfected] or unhealthy [infected with powdery mildew]. 
+
+## Dataset
+The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprises of over 4200 cherry leaf images from Farmy & Foods, pre-labelled *healthy* [uninfected] or *powdery mildew* [infected with mildew]. 
+
 
 ## Business Case Assessment
 ### The business requirements are:
@@ -30,20 +33,20 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 - There will be an image montage for each of the two classes.
 
 ## Hypothesis and Validation:
-* List here your project hypothesis(es) and how you envision validating it (them).
+- As the data analyst, I believe it's possible to train an ML model to differentiate between health/mildew infected leaves through visual analysis of images at a greater than 97% accuracy rate.
 
-## Dashboard design:
+## Dashboard design: (~~check order and page titles)
 - A project summary page.
-- A page listing the findings related to the study to visually differentiate healthy and mildew-infected leaves.
-- A page containing a link to download cherry-leaf images for live prediction, and a user interface with a file uploader. The user must be able to upload multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present. A downloadable table with the results must also be available.
 - A project hypothesis page, with details of how it was validated.
+- A page containing a link to download cherry-leaf images for live prediction, and a user interface with a file uploader. The user must be able to upload multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present. A downloadable table with the results must also be available.
+- A page listing the findings related to the study to visually differentiate healthy and mildew-infected leaves.
 - A more technical page for data analysts displayinng model performance. 
 
 
 ## Unfixed Bugs
 * You will need to mention unfixed bugs and why they were unfixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable for consideration, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
 
-## Deployment
+## Deployment (~~yet to be done)
 ### Heroku
 
 * The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
@@ -60,18 +63,24 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 ## Main Data Analysis and Machine Learning Libraries
 * Here you should list the libraries used in the project and provide an example(s) of how you used these libraries.
 
+The program was completed in Jupyter notebooks within the GitPod environment
+Numpy (~~list libraries used)
+Pandas
+Scikit-Learn
+Tensorflow
+The app was made in Streamlit
+
 ## Credits 
 
 * In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism. 
 * You can break the credits section up into Content and Media, depending on what you have included in your project. 
 
-### Content 
+The project was inspired largely by the Malaria Detection walkthrough project, and the basics of the code and layout of the project are similar.  
+
 
 - The text for the Home page was taken from Wikipedia Article A.
 - Instructions on how to implement form validation on the Sign-Up page were taken from [Specific YouTube Tutorial](https://www.youtube.com/).
 - The icons in the footer were taken from [Font Awesome](https://fontawesome.com/).
-
-### Media
 
 - The photos used on the home and sign-up page are from This Open-Source site.
 - The images used for the gallery page were taken from this other open-source site.
@@ -95,13 +104,16 @@ n.b.
 
 
 
-no img augmentation as 2100 each is enough(?) ~ do I need augmentation??
-image size is 256,256. 4000+ imgs at this size is too big for a regular heroku deployment, so images are resized to 80,80 (I haven't actually done this... got to work out how exactly)
+page by page explanation of what I've done (4x notebooks, 6x app pages) - deeper explanations of the ML models tested, parameters tuned etc
+
 av. img is a black image. can I edit this to make it better..?
+
 in data_visualisation I've copied Diff and Montage functions directly. Edit to make them more personalised
+
 We're using a CNN model (convolutional neural network), binary classifier
+
 Think: CRISP-DM, AGILE - justify decisions made using these frameworks
-model: tested: adam, adagrad, SGD, Adadelta, Nadam
+model: tested: adam, adagrad, SGD, Adadelta, Nadam, RMSProp
 
 quote from video (re: base CI model for malaria detection): Convolution layers are used to select the dominant pixel value
 from the non-dominant pixels in images using filters whereas the max-pooling layers reduce

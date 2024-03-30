@@ -11,12 +11,12 @@ from src.machine_learning.predictive_analysis import (
                                                     )
 
 def page_mildew_detector_body():
-    st.info(
-        f"* The client is interested in telling whether or not a given cherry leaf "
-        f"is infected with powdery mildew or not."
+    st.write(
+        f"Using the app below, cherry leaf images can be uploaded to check the ML model. "
+        f""
         )
 
-    st.write(
+    st.info(
             "An image set of healthy and mildew infected leaves can be downloaded for live prediction. "
             "Images can be downloaded from [here](https://www.kaggle.com/codeinstitute/cherry-leaves)."
         )

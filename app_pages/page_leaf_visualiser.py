@@ -26,7 +26,7 @@ def page_leaf_visualiser_body():
       if st.button("Create Montage"):      
         image_montage(dir_path= my_data_dir + '/train',
                       label_to_display=label_to_display,
-                      nrows=8, ncols=3, figsize=(10,25))
+                      nrows=6, ncols=3, figsize=(10,25))
       st.write("---")
       
     if st.checkbox("Difference between average and variability image"):
@@ -34,17 +34,12 @@ def page_leaf_visualiser_body():
       avg_parasitized = plt.imread(f"outputs/{version}/avg_diff_healthy.png")
       avg_uninfected = plt.imread(f"outputs/{version}/avg_diff_powdery_mildew.png")
 
-    #   st.warning(
-        # f"* We notice the average and variability images show certain "
-        # f"patterns where we could intuitively differentiate one from another. ")
-
       st.image(avg_parasitized, caption='Healthy leaf - Average and Variability')
       st.image(avg_uninfected, caption='Mildew infected leaf - Average and Variability')
       st.info(
         f'**Explanation of terms**\n\n'
         f'The average here refers to the *Mean* - the sum of all images divided by the number of images.\n\n'
-        # f'*Standard Deviation* refers to the spread of values around the Mean, showing variability '
-        # f'within the sample set.'
+        
       )
       st.write("---")
 
