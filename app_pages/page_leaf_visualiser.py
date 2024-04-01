@@ -12,8 +12,10 @@ import random
 def page_leaf_visualiser_body():
     st.write("### Cherry Leaf Visualiser")
     st.info(
-        f"* The client (Farmy & Foods) requires a model that can visually differentiate between "
-        "healthy and powdery-mildew infected cherry leaves.")
+        "The client (Farmy & Foods) requires a model that can visually differentiate between healthy and powdery mildew "
+        "infected cherry leaves. A montage for either label allows us to "
+        "visually check both categories. The difference and variability "
+        "images may show patterns within each category")
     
     version = 'v1'
 
@@ -26,7 +28,13 @@ def page_leaf_visualiser_body():
       if st.button("Create Montage"):      
         image_montage(dir_path= my_data_dir + '/train',
                       label_to_display=label_to_display,
-                      nrows=6, ncols=3, figsize=(10,25))
+                      nrows=5, ncols=3, figsize=(10,25))
+      
+      st.warning("Intuitively, fairly clear differences can be seen at a "
+                "glance between healthy and mildew infected leaves, which "
+                "gives confidence that an ML model will be able to tell them "
+                "apart too")
+
       st.write("---")
       
     if st.checkbox("Difference between average and variability image"):
@@ -36,25 +44,29 @@ def page_leaf_visualiser_body():
 
       st.image(avg_parasitized, caption='Healthy leaf - Average and Variability')
       st.image(avg_uninfected, caption='Mildew infected leaf - Average and Variability')
-      st.info(
+
+      st.warning("Overall the variability images do not show strong "
+                "features that obviously differentiate healthy and mildew "
+                "infected leaves ")
+      
+      st.write("---")
+
+st.info(
         f'**Explanation of terms**\n\n'
         f'The average here refers to the *Mean* - the sum of all images divided by the number of images.\n\n'
         
       )
-      st.write("---")
 
-
-# Is this repeated code? need to refactor anything saggy and make sure I haven't repeated myself...
 
 # Function to create the montage
 def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10,8)):
   sns.set_style("white")
   labels = os.listdir(dir_path)
 
-  # Subset the class you are interested to display
+  # Subset the class to display
   if label_to_display in labels:
 
-    # Checks if your montage space is greater than subset size
+    # Checks if the montage space is greater than subset size
     images_list = os.listdir(dir_path+'/'+ label_to_display)
     if nrows * ncols < len(images_list):
       img_idx = random.sample(images_list, nrows * ncols)

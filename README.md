@@ -73,14 +73,33 @@ The images are again augmented, as before (the pre-augmented images cannot be us
 
 ## Explanation and logical basis for models
 ### Softmax
-Softmax models are most often used for categorical classification tasks where there are 3 or more categories to be distinguished between (is this image a tree, lampost or traffic light, is this image a house, apartment or shed etc). The model requires these classifications to be encoded as digits [0, 1, 2 etc] and the output is one of these digits, which we can then translate back into more easily understood language. Softmax models can, of course, also be used for binary classification tasks such as the project we're working on. <br>
-The model consists of ~~
-In a Softmax model, 
+Softmax models are most often used for [multi-]categorical classification tasks where there are 3 or more categories to be distinguished between ('is this image a tree, lampost or traffic light', 'is this image a house, apartment or shed' etc). The model requires these classifications to be encoded as digits [0, 1, 2 etc] and the output is one of these digits, which we can then translate back into more easily understood language. Softmax models can, of course, also be used for binary classification tasks such as the project we're working on. <br>
+The tested model starts off with a relativly simple input layer and increases in complexity through the model (filters increasing from 32 to 64 to 128). Kernel size is varied to search for features at differing resolutions. Max Pooling is set to (2,2) or (3,3) in early layers, but in the final 2 convolutional layers to (1,1), which has no effect on spatial dimensions, effectively scanning the entire image with no reduction in size. <br>
+A small dropout layer is introduced after several layers (0.1 = 10%) to introduce randomness by randomly dropping a percentage of neurons. I was worried that with a relatively deep model there was a danger of overfitting, so thought it wise to include 2 dropout layers, albeit dropping out at a relatively low level (0.1 and 0.3). <br>
+Activation on every layer was ReLu as through extensive testing it seemed to perform the best, but in the final convolutional layer I used a tanh layer to capture more nuanced patterns. Multiple different activation layers were tested, tanh and relu consistently gave the best results. <br>
+A flatten layer was then used to convert the 3D feature map into a 1D array to be fed into the fully-connected Dense layer, followed by the second dropout layer (0.3). <br>
+The output layer was, of course, Softmax. <br>
+The model was compiled with loss set to binary_crossentropy, optimizer set to Adam, and the metrics as accuracy. <br>
+I tested thoroughly with a categorical_crossentropy loss setting but couldn't replicate the accuracy from binary_crossentropy. Multiple optimizers were tested including RMSProp, SGD, Adagrad but Adam returned the best accuracy. <br><br>
+As I had resized my images down to 80x80px the number of parameters was relatively small. Although there's no 'right' answer for how many parameters to aim for, I had seen models using anything from 400,000 to 2.7 million parameters. I thought it prudent to aim for a minimum of 500,000, and added convolutional layers until I felt I had a reasonable amount (ultimately, 679,554 parameters). <br>
+The accuracy of the model (99.64%) tells me that I certainly had enough parameters to work with. It would be interesting to remove layers and test with a far lower number of parameters to see if I could maintain accuracy, though for this project I didn't have the time or need to do so once I'd hit such a high level of accuracy. <br>
+Early stopping was set to 4 to stop the model once it wasn't improving any more, and epochs [cycles through the training data] were set to 30, although the model completed the fitting process after 21 epochs.
+
+
 
 ### Sigmoid
-Sigmoid models are more commonly used for binary classifcation tasks where the output is either category 1 or category 2 (dog or cat, cup or plate, healthy or unhealthy). Classification labels are encoded as digits [0, 1] and the single output is either a zero or a one, which is then mapped back onto the human-understandable labels. <br>
-The model consists of ~~
+Sigmoid models are more commonly used for binary classifcation tasks where the output is either category 1 or category 2 (dog or cat, cup or plate, healthy or unhealthy). Classification labels are encoded as digits [0, 1] and the single output is either a zero or a one, which is then mapped back onto the human-understandable labels. <br><br>
+The model built in Modelling and Evaluation 2 consists of a very similar input layer to the Softmax model - 32 x 3 filters, the spatial dimensions reduced by half with a (2,2) Max Pooling size. There then follow 2 convolutional layers with 128 and then 64 filters, both with (3,3) kernel sizes and (2,2) Max Pooling sizes. <br>
+A flatten layer feeds into the dense layer, and then there's a relatively large dropout layer (0.5) to reduce chance of overfitting. <br>
+Naturally, loss is set to binary_crossentropy, the optimizer is set to Nadam and metrics to accuracy. <br> 
+I tested several optimizers (includng RMSProp, SGD, Adam) for this model, and settled on Nadam. none of the others were as accurate for me. <br><br>
+I also included a learning rate scheduler within the model. The idea was to have the model fine-tune its learning as it passed through the epochs after making relatively large updates to its parameters to get into the right ballpark for accuracy in the early epochs. An initial learning rate of 1e-3 [0.001] is fairly standard (not too large or small), and the learning rate scheduler reduced this rate by 10% after each 8 epochs, which means an exponential decrease after a looping through the 8 epoch set enough times. <br><br>
+Early iterations of the model finished training rather early, so I set the early stopping to 5 to allow it to complete more cycles.
+Epochs were set to 40, but the model completed its training in 28 epochs, where early stopping stepped in to finish the fitting process.
 
+
+
+## User Stories
 
 ## Unfixed Bugs
 ~~none?
@@ -111,6 +130,8 @@ Tensorflow
 The app was made in Streamlit
 
 ## Credits 
+
+~~ learning rate
 
 * In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism. 
 * You can break the credits section up into Content and Media, depending on what you have included in your project. 

@@ -16,7 +16,7 @@ def page_summary_body():
               "A dataset of 4200 images is provided to the data analyst to use in creating and testing "
               "a machine learning [ML] model for use in powdery mildew diagnosis.\n\n"
               "The client requires a 97% accuracy rate in correct diagnosis for their cherry trees "
-              "(i.e. healthy or mildew infected) through analysis of images. \n\n"
+              "(i.e. healthy or mildew infected) through analysis of leaf images. \n\n"
               "The client further requests a dashboard so that the results can be easily visualised. \n\n"
               "The client also asks for data privacy to be observed, in that the data from the project "
               "not be shared with anyone not involved with the project.\n\n")
