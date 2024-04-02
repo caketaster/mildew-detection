@@ -28,7 +28,7 @@ def page_leaf_visualiser_body():
                  "'Create Montage' button")
         my_data_dir = 'inputs/cherry_leaves_raw_dataset/cherry-leaves'
         labels = os.listdir(my_data_dir + '/train')
-        label_to_display = st.selectbox(label="Select label", options=labels, index=0).  # noqa
+        label_to_display = st.selectbox(label="Select label", options=labels, index=0)  # noqa
         if st.button("Create Montage"):
             image_montage(dir_path=my_data_dir + '/train',
                           label_to_display=label_to_display,
@@ -44,7 +44,7 @@ def page_leaf_visualiser_body():
     if st.checkbox("Difference between average and variability image"):
 
         avg_parasitized = plt.imread(f"outputs/{version}/avg_diff_healthy.png")
-        avg_uninfected = plt.imread(f"outputs/{version}/avg_diff_powdery_mildew.png").  # noqa
+        avg_uninfected = plt.imread(f"outputs/{version}/avg_diff_powdery_mildew.png")  # noqa
 
         st.image(avg_parasitized, caption="Healthy leaf - Average "
                                           "and Variability")

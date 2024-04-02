@@ -90,7 +90,7 @@ Here the more technical aspects of the project will be discussed, including the 
 ## Notebooks
 The project contains 4 Jupyter notebooks.
 - ### Data Collection
-This notebook is where the dataset is downloaded from Kaggle, uploaded to GitPod, any non-image files removed and the images split into train, validation and test sets with a standard 70/10/20 ratio split. 
+This notebook is where the dataset is downloaded from Kaggle, uploaded to GitPod, any non-image files removed and the images split into train, validation and test sets with a standard 70:10:20 ratio split. 
 
 - ### Data Visualisation
 Images are resized and put in an array for modelling. The image_shape.pkl is created. An image montage, plus average and difference images are produced for each label.
@@ -102,10 +102,12 @@ Images are resized and put in an array for modelling. The image_shape.pkl is cre
 
 - ### Modelling and Evaluation 1 - Softmax model
 The images go through an augmentation process, where the images are rotated, sheared, zoomed, flipped and rescaled in order to create a more random imageset that is harder for the model to memorise. The first model (using a Softmax activation) is created, tuned and tested to reach the highest accuracy level possible. <br>
+The model is then evaluated on the test set data and the evaluation saved.<br>
 The architecture and logic for the model is presented below.
 
 - ### Modelling and Evaluation 2 - Sigmoid model
 The images are again augmented, as before (the pre-augmented images cannot be used as a variable is required to be set differently for Sigmoid and Softmax models). A Sigmoid output model is then created, and then tuned by changing various hyperparameters to get the best accuracy possible.<br>
+The model is then evaluated on the test set data and the evaluation saved.<br>
 The architecture and logic for the model is presented below.
 
 
@@ -227,6 +229,7 @@ User stories were created using GitHub's kanban board. All user stories were sat
 
 ## Credits 
 
+~~ Not done yet
 ~~ Learning rate
 
 * In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism. 

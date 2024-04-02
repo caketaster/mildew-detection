@@ -2,16 +2,6 @@ import streamlit as st
 
 
 def page_summary_body():
-    st.markdown(
-        """
-        <style>
-        .reportview-container {
-                background: url("https://heritagehillnurseryinc.com/wp-content/uploads/2021/04/RainierSweetCherry-01-6870-1-scaled.jpg");  # noqa
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-        )
 
     st.header("Project Summary\n\n")
 
