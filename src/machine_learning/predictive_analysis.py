@@ -26,29 +26,29 @@ def plot_predictions_probabilities(pred_probability, pred_class):
     st.plotly_chart(fig)
 
 
-
 def resize_input_image(img, version):
-    
+
     # Resize and reshape image to av image size
-    image_shape = load_pkl_file(file_path=f"outputs/{version}/image_shape.pkl")
-    img_resized = img.resize((image_shape[1], image_shape[0]), Image.LANCZOS)
+    image_shape = load_pkl_file(file_path=f"outputs/{version}/image_shape.pkl")  # noqa
+    img_resized = img.resize((image_shape[1], image_shape[0]), Image.LANCZOS)  # noqa
     my_image = np.expand_dims(img_resized, axis=0)/255
 
     return my_image
 
 
 def load_model_and_predict(my_image, version):
-   
+
     # Prediction on dragged and dropped images
     model = load_model(f"outputs/{version}/mildew_detection_model_2.h5")
     pred_probability = model.predict(my_image)[0, 0]
-    target_map = {v: k for k, v in {'Healthy': 0, 'Mildew infected': 1}.items()}
-    
+    target_map = {v: k for k, v in {'Healthy': 0, 'Mildew infected': 1}.items()}  # noqa
+
     pred_class = target_map[pred_probability > 0.5]
     if pred_class == target_map[0]:
         pred_probability = 1 - pred_probability
 
-    st.write(f"The ML model predicts the sample is labelled "
-            f"**{pred_class}** at a probability of **{round(pred_probability, 2)}**")
+    st.write("The ML model predicts the sample is labelled "
+             f"**{pred_class}** at a probability of "
+             f"**{round(pred_probability, 2)}**")
 
     return pred_probability, pred_class
