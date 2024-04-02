@@ -17,7 +17,7 @@ def page_mildew_detector_body():
     st.write("The label probability will be given to 2 decimal points."
              "You can hover over the bar chart to find the "
              "more precise value.")
-
+    st.write("**Please upload only .jpg/.jpeg images**")
     st.info("An image set of healthy and mildew infected leaves can be "
             "downloaded for live prediction. "
             "Images can be downloaded from "
@@ -28,7 +28,7 @@ def page_mildew_detector_body():
 
     upload_img = st.file_uploader("Upload leaf image(s). You may "
                                   "upload more than one at a time.",
-                        type=['png', 'jpg', 'jpeg'], accept_multiple_files=True)  # noqa
+                        type=['jpg', 'jpeg'], accept_multiple_files=True)  # noqa
 
     if upload_img is not None:
         analysis_report = pd.DataFrame([])

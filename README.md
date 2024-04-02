@@ -36,11 +36,14 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 
 ## Hypothesis and Validation:
 - We can hypothesise that it's possible to visually differentiate between healthy and mildew infected leaves.
-- As the data analyst, I believe it's possible to train an ML model to differentiate between health/mildew infected leaves through visual analysis of images at a greater than 97% accuracy rate.
+- As the data analyst, I believe it's possible to train an ML model to differentiate between healthy/mildew infected leaves through visual analysis of images at a greater than 97% accuracy rate.
 
 The initial hypothesis can be confirmed by the fact that manual visual differentiation already occurs at Farmy & Foods (albeit at a slow and hard to scale level)
 
 The second hypothesis was be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. An accuracy rate of 99.7+% was reached with one of the models trained, and 99.6+% with the other. 
+
+## Rationale to map Business requirements to Data Visualisations and ML tasks
+~~
 
 ## Workflow
 
@@ -55,10 +58,10 @@ This means understanding the business requirements of the client (detailed above
 The data must be appropriate for addressing the task. Do we have enough images? If not, what sort of augmentation is necessary? Is the resolution good enough for a visual differentiation? Within the dataset are there non-image files? This sort of question is vital to understanding the resources you're working with.
 
 - **Data Preparation** <br>
-This addresses how the data will be organised for modelling. In this case the data is split into train, validation and test sets (70:10:20). Labels should be equally distributed in each set. Image augmentation will be rn to create variations of the images to help reduce overfitting.
+This addresses how the data will be organised for modelling. In this case the data is split into train, validation and test sets (70:10:20). Labels should be equally distributed in each set. Image augmentation will be run to create variations of the images to help reduce overfitting.
 
 - **Modelling** <br>
-The modelling techniques used mustbe decided upon. Binary classification makes sense as we're only looking at 2 classes. Both Softmax and Sigmoid models are able to parse binary classification. Two models will be created to test which model does it best before moving forward with the more accurate model for deployment. Within each model I will stack layers of filters within a CNN (Convolutional Neural Network), and tune hyperparameters to get the highest accuracy rating possible.
+The modelling techniques used must be decided upon. Binary classification makes sense as we're only looking at 2 classes. Both Softmax and Sigmoid models are able to parse binary classification. Two models will be created to test which model does it best before moving forward with the more accurate model for deployment. Within each model I will stack layers of filters within a CNN (Convolutional Neural Network), and tune hyperparameters to get the highest accuracy rating possible.
 
 - **Evaluation** <br>
 Model performance will be evaluated to see if it matches (or indeed exceeds) the business requirements. Dashboard design must also be evaluated to make sure it's simple and clear. All required functionality (e.g. image montage, live detection app) should be present and working.
@@ -112,7 +115,7 @@ The architecture and logic for the model is presented below.
 
 
 ## Explanation and logical basis for models
-### Softmax Model
+### Softmax Activation Function Model
 Softmax models are most often used for [multi-]categorical classification tasks where there are 3 or more categories to be distinguished between ('is this image a tree, lampost or traffic light', 'is this image a house, apartment or shed' etc). The model requires these classifications to be encoded as digits [0, 1, 2 etc] and the output is a probability of one of these digits, which we can then translate back into more easily understood language. Softmax models can, of course, also be used for binary classification tasks such as the project we're working on. <br><br>
 The model starts off with a relatively simple input layer and increases in complexity through the model (filters increasing from 32 to 64 to 128). Kernel size is varied to search for features at differing resolutions. Max Pooling is set to (2,2) or (3,3) in early layers, but in the final 2 convolutional layers to (1,1), which has no effect on spatial dimensions, effectively scanning the entire image with no reduction in size. <br><br>
 A small dropout layer is introduced after several layers (0.1 = 10%) to introduce randomness by randomly dropping a percentage of neurons. I was worried that with a relatively deep model there was a danger of overfitting, so thought it wise to include 2 dropout layers, albeit dropping out at a relatively low level (0.1 and 0.3). <br><br>
@@ -131,7 +134,7 @@ Early stopping was set to 4 to stop the model once it wasn't improving any more,
 ![Softmax summary](media/readme/softmax_params.jpg)<br>
 
 
-### Sigmoid Model
+### Sigmoid Activation Function Model
 Sigmoid models are more commonly used for binary classifcation tasks where the output is either category 1 or category 2 (dog or cat, cup or plate, healthy or unhealthy). Classification labels are encoded as digits [0, 1] and the single output is a probability between 0-1. Generally, the cut-off will be at 0.5 (halfway between) to decide if the model is predicting category A[0] or B[1]. The output is then mapped back onto the human-understandable labels. <br><br>
 The model built in Modelling and Evaluation 2 consists of a very similar input layer to the Softmax model - 32 x 3 filters, the spatial dimensions reduced by half with a (2,2) Max Pooling size. There then follow 2 convolutional layers with 128 and then 64 filters, both with (3,3) kernel sizes and (2,2) Max Pooling sizes. Activation is relu throughout.<br>
 A Flatten layer feeds into the Dense layer, and then there's a relatively large dropout layer (0.5) to reduce chance of overfitting. <br>
@@ -195,6 +198,7 @@ User stories were created using GitHub's kanban board. All user stories were sat
 ## Testing
 - All Python pages (i.e. app pages) were passed to the [Code Institute Linter](https://pep8ci.herokuapp.com/) and passed with no errors (note: # noqa was called on occasion when the line could not be broken up).
 - The Streamlit app was tested on Chrome, Edge and Firefox on desktop and laptop and worked perfectly on all.
+- ~~ Fixed bugs
 
 ## Main Data Analysis and Machine Learning Libraries
 ### Languages used:
@@ -262,11 +266,15 @@ n.b.
 
 
 
+# TO DO
+- screenshots of app
+- fix confusion matrices for val sets
+- remove redundant test matrix code
+- raise gamma for diff images...?
+- credits and acknowledgements
+- do a bit of refactoring and add more notes to functions
 
 
-page by page explanation of what I've done (4x notebooks, 6x app pages) - deeper explanations of the ML models tested, parameters tuned etc
-
-av. img is a black image. can I edit this to make it better..?
 
 Think: CRISP-DM, AGILE - justify decisions made using these frameworks
 model: tested: adam, adagrad, SGD, Adadelta, Nadam, RMSProp
