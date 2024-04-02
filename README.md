@@ -36,9 +36,9 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 - We can hypothesise that it's possible to visually differentiate between healthy and mildew infected leaves.
 - As the data analyst, I believe it's possible to train an ML model to differentiate between health/mildew infected leaves through visual analysis of images at a greater than 97% accuracy rate.
 
-The initial hypothesis can be confirmed by the fact that manual visual differentiation already occurs at Framy & Foods (albeit at a slow and hard to scale level)
+The initial hypothesis can be confirmed by the fact that manual visual differentiation already occurs at Farmy & Foods (albeit at a slow and hard to scale level)
 
-The second hypothesis was be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. An accuracy rate of 99.7+% was reached. 
+The second hypothesis was be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. An accuracy rate of 99.7+% was reached with one of the models trained, and 99.6+% with the other. 
 
 ## Dashboard design: (~~check order and page titles)
 The Streamlit dashboard contains 5 pages:

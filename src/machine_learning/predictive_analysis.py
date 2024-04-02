@@ -48,6 +48,7 @@ def load_model_and_predict(my_image, version):
     if pred_class == target_map[0]:
         pred_probability = 1 - pred_probability
 
-    st.write(f"The ML model predicts the sample is labelled: **{pred_class}**")
+    st.write(f"The ML model predicts the sample is labelled "
+            f"**{pred_class}** at a probability of **{round(pred_probability, 2)}**")
 
     return pred_probability, pred_class

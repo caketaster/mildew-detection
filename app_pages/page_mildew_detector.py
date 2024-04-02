@@ -11,39 +11,40 @@ from src.machine_learning.predictive_analysis import (
                                                     )
 
 def page_mildew_detector_body():
-    st.write(
-        f"Using the app below, cherry leaf images can be uploaded to check the ML model. "
-        f""
-        )
+    st.write("Using the app below, cherry leaf images can be uploaded "
+            "to check the ML model. ")
+    st.write("The label probability will be given to 2 decimal points."
+            "You can hover over the bar chart to find the more precise value.")
+        
 
-    st.info(
-            "An image set of healthy and mildew infected leaves can be downloaded for live prediction. "
+    st.info("An image set of healthy and mildew infected leaves can be "
+            "downloaded for live prediction. "
             "Images can be downloaded from [here](https://www.kaggle.com/codeinstitute/cherry-leaves)."
         )
 
     st.write("---")
 
-    images_buffer = st.file_uploader('Upload leaf image(s). You may upload more than one at a time.',
-                                        type=['png', 'jpg', 'jpeg'], accept_multiple_files=True)
+    upload_img = st.file_uploader('Upload leaf image(s). You may upload more than one at a time.',
+                        type=['png', 'jpg', 'jpeg'], accept_multiple_files=True)
    
-    if images_buffer is not None:
-        df_report = pd.DataFrame([])
-        for image in images_buffer:
+    if upload_img is not None:
+        analysis_report = pd.DataFrame([])
+        for image in upload_img:
 
             img_pil = Image.open(image)
-            st.info(f"Leaf image sample: **{image.name}**")
+            st.info(f"Leaf image: **{image.name}**")
             img_array = np.array(img_pil)
             st.image(img_pil, caption=f"Image Size: {img_array.shape[1]}px width x {img_array.shape[0]}px height")
 
             version = 'v1'
             resized_img = resize_input_image(img=img_pil, version=version)
-            pred_proba, pred_class = load_model_and_predict(resized_img, version=version)
-            plot_predictions_probabilities(pred_proba, pred_class)
+            pred_probability, pred_class = load_model_and_predict(resized_img, version=version)
+            plot_predictions_probabilities(pred_probability, pred_class)
 
-            df_report = df_report.append({"Name": image.name, 'Result': pred_class},
-                                         ignore_index=True)
+            analysis_report = analysis_report.append({'Image': image.name, 'Result': pred_class, 'Probability': pred_probability},
+                                ignore_index=True)
 
-        if not df_report.empty:
+        if not analysis_report.empty:
             st.success("Analysis Report")
-            st.table(df_report)
-            st.markdown(download_dataframe_as_csv(df_report), unsafe_allow_html=True)
+            st.table(analysis_report)
+            st.markdown(download_dataframe_as_csv(analysis_report),unsafe_allow_html=True)

@@ -50,12 +50,8 @@ def page_leaf_visualiser_body():
                 "infected leaves ")
       
       st.write("---")
-
-st.info(
-        f'**Explanation of terms**\n\n'
-        f'The average here refers to the *Mean* - the sum of all images divided by the number of images.\n\n'
-        
-      )
+      st.info('**Explanation of terms**\n\n'
+              'The average here refers to the *Mean* - the sum of all images divided by the number of images.\n\n')
 
 
 # Function to create the montage
