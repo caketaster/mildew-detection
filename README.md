@@ -20,7 +20,7 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 <ul><li>a. The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew based on visual analysis.</li>
 <li>b. A 97% degree of accuracy has been agreed.</li></ul>
 <li> The client requires a dashboard to view the results. </li>
-<li> The client provided the data under an NDA (non-disclosure agreement), therefore the data should only be shared with professionals that are officially involved in the project, for ethical and privacy reasons.</li></ol>
+</ol>
 
 ### The benefit for the client is:
 - Manual checking - shown to be unscalable for an operation of this magnitude - will be minimised.
@@ -38,15 +38,34 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 - We can hypothesise that it's possible to visually differentiate between healthy and mildew infected leaves.
 - As the data analyst, I believe it's possible to train an ML model to differentiate between healthy/mildew infected leaves through visual analysis of images at a greater than 97% accuracy rate.
 
-The initial hypothesis can be confirmed by the fact that manual visual differentiation already occurs at Farmy & Foods (albeit at a slow and hard to scale level)
+The initial hypothesis can be confirmed by the fact that manual visual differentiation already occurs at Farmy & Foods (albeit at a slow and hard to scale level).
 
-The second hypothesis was be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. An accuracy rate of 99.7+% was reached with one of the models trained, and 99.6+% with the other. 
+The second hypothesis was be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. An accuracy rate of 99.7+% was reached with one of the models trained, and 97.7+% with the other. 
 
-## Rationale to map Business requirements to Data Visualisations and ML tasks
-~~
+## Rationale to map Business Requirements to Data Visualisations & ML tasks
+In terms of Business Requirement 1 (To paraphrase: The client requires a method of differentiating between healthy and mildew infected leaves at a greater than 97% accuracy):
+- The montages and average/difference images should show clear intuitive visual differentiation between healthy and infected leaves.
+- Knowing that we're able to visually differentiate between the 2 labels, we can have confidence that an ML model can be created to do this for us.
+- Image augmentation will add an element of randomness to the images. increasing the dataset diversity and making the model(s) more robust.
+- With a focus on accuracy, 2 competing models will be trained to see which solves the business requirement at the best level.
+- Accuracy of the model(s) can be seen by the model training accuracy and loss charts. 
+
+For Business Requirement 2 (The client requires a dashboard to view the results):
+- A Streamlit dashboard will be created for ease of viewing. All relevant data and project information will be easily accessible through a simple dashboard design. 
+- To prove utility, the Streamlit dashboard will include an app for live prediction using unseen images.
+- The dashboard will further include a more technical page mainly for data analysts.
+
+## ML Business Case
+The client's needs will guide the interface presentation chosen. In terms of the app: (LO2, LO4, LO6)
+- We are aware that we have to predict between 2 labels, so a binary classification model is required. Models will be created and trained as such.
+- Uploading of multiple images at a time will speed up the testing process for the client.
+- The probability of correct prediction for each image (in graph from) will be helpful. In cases where confidence in the prediction is low, the client can then choose to look more carefully at the leaf and possibly 'override' the prediction made by the ML model. 
+- A downloadable report will enable easy sharing of results. For example workers in the field can send photos to a central database for testing, and the reports can be sent back to them to enable immediate treatment, if needed. <br>
+
+All other data presented should support the business case, showing that leaves are visually different (with the montages and average/difference images), and showing the utility of the model used (with the fitting process graphs). 
+
 
 ## Workflow
-
 CRISP-DM (CRoss Industry Standard Process for Data Mining) is used as a rationale to map business requirements to the Data Visualisations and ML tasks. It has six phases:
 
 ![CRISP-DM workflow](media/readme/CRISP-DM.png)
@@ -126,8 +145,8 @@ The model was compiled with loss set to binary_crossentropy, optimizer set to Ad
 
 I tested thoroughly with a categorical_crossentropy loss setting but couldn't replicate the accuracy from binary_crossentropy. Multiple optimizers were tested including RMSProp, SGD, Adagrad but Adam returned the best accuracy. <br><br>
 As I had resized my images down to 80x80px the number of parameters was relatively small. Although there's no 'right' answer for how many parameters to aim for, I had seen models using anything from 400,000 to 2.7 million parameters. I thought it prudent to aim for a minimum of 500,000, and added convolutional layers until I felt I had a reasonable amount (ultimately, 679,554 parameters). <br>
-The accuracy of the model (99.64%) tells me that I certainly had enough parameters to work with. It would be interesting to remove layers and test with a far lower number of parameters to see if I could maintain accuracy, though for this project I didn't have the time or need to do so once I'd hit such a high level of accuracy. <br>
-Early stopping was set to 4 to stop the model once it wasn't improving any more, and epochs [cycles through the training data] were set to 30, although the model completed the fitting process after 21 epochs.
+The accuracy of the model (97.75%) tells me that I certainly had enough parameters to work with. It would be interesting to remove layers and test with a far lower number of parameters to see if I could maintain accuracy, though for this project I didn't have the time or need to do so once I'd hit such a high level of accuracy. <br>
+Early stopping was set to 4 to stop the model once it wasn't improving any more, and epochs [cycles through the training data] were set to 30, although the model completed the fitting process after 22 epochs.
 
 ![Softmax model architecture](media/readme/softmax_model.jpg)<br>
 
@@ -179,6 +198,20 @@ User stories were created using GitHub's kanban board. All user stories were sat
 - Image size was set to (80,80) for deployment purposes, images at the original (256,256) size would presumably allow for greater precision in diagnosis.
 - Images were tested using full rgb, it would be interesting to see if the results would hold using grayscale - I'm unsure of how much influence the colours are having on detection.
 
+## Testing
+- All Python pages (i.e. app pages) were passed to the [Code Institute Linter](https://pep8ci.herokuapp.com/) and passed with no errors (note: # noqa was called on occasion when the line could not be broken up).
+- The Streamlit app was tested on Chrome, Edge and Firefox on desktop and laptop and worked perfectly on all.
+
+## Bugs
+- The mildew detector app in Streamlit was tested on a variety of images from Google Image search - 8 clearly healthy images, and 6 mildew infected images (available in the project under media/readme/healthy_test and media/readme/mildew_test). For the majority of images the detector worked as planned, but one image from each set was incorrectly diagnosed:<br>
+![actually healthy](media/readme/test_error_1.jpg)<br>
+![actually mildew infected](media/readme/test_error_2.jpg)<br>
+- These tests show flaws in either the data or the model, in my opinion more likely the data. The dataset images tend to have a very similar background - images are taken on a fairly regular background (a table?) with pretty regular lighting. If this is not available in the field and workers are sending images with irregular backgrounds with mixed lighting, this could compromise the accuracy of the model. 
+- Many bugs came up during the process. For example, the models would not work with the same augmented images - finally solved once I worked out I had to change a variable in the augmentation process, which eventually led me to splitting the Modelling and Evaluation notebook into 2 separate notebooks for clarity.
+- On testing within the Modelling and Evaluation notebook, the Softmax model was predicting very confidently the exact opposite label to what was required, owing to the different ways the models deal with predictions. I had assumed my model was fundamentally flawed, but eventually realised I could make minor edits to the prediction_class variable and fix the issue.
+- The detector could not deal with .png images. As all images in the dataset are .jpg I didn't feel it was worth it to try and get .pngs working, but I did alter the instructions to tell the user to only upload .jpg or .jpeg images. This may be classed as an unfixed bug _if_ .png images need to be uploaded in the future.
+- Other errors were generally fixed iteratively as they occurred and were not recorded.
+
 ## Deployment 
 ### Heroku
 
@@ -194,11 +227,6 @@ User stories were created using GitHub's kanban board. All user stories were sat
 6. Select _automatic deploy_ to allow the app to update automatically each time you git push.
 7. Click Deploy Branch to build the app.
 5. Click now the button Open App on the top of the page to access the App.
-
-## Testing
-- All Python pages (i.e. app pages) were passed to the [Code Institute Linter](https://pep8ci.herokuapp.com/) and passed with no errors (note: # noqa was called on occasion when the line could not be broken up).
-- The Streamlit app was tested on Chrome, Edge and Firefox on desktop and laptop and worked perfectly on all.
-- ~~ Fixed bugs
 
 ## Main Data Analysis and Machine Learning Libraries
 ### Languages used:
@@ -257,6 +285,7 @@ The project was inspired largely by the Malaria Detection walkthrough project, a
 
 
 
+
 n.b.
 ## ML Business Case
 * In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
@@ -268,9 +297,6 @@ n.b.
 
 # TO DO
 - screenshots of app
-- fix confusion matrices for val sets
-- remove redundant test matrix code
-- raise gamma for diff images...?
 - credits and acknowledgements
 - do a bit of refactoring and add more notes to functions
 

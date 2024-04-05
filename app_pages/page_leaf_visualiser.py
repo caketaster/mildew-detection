@@ -51,9 +51,10 @@ def page_leaf_visualiser_body():
         st.image(avg_uninfected, caption="Mildew infected leaf - "
                                          "Average and Variability")
 
-        st.warning("Overall the variability images do not show strong "
-                   "features that obviously differentiate healthy and "
-                   "mildew infected leaves ")
+        st.warning("The variability images show that there are clear "
+                   "features that differentiate healthy and "
+                   "mildew infected leaves. Healthy leaves appear to "
+                   "be more regular in shape")
 
         st.write("---")
         st.info("**Explanation of terms**\n\n"
