@@ -25,10 +25,7 @@ def page_summary_body():
              "diagnosis for their cherry trees (i.e. healthy or "
              "mildew infected) through analysis of leaf images. \n\n"
              "The client further requests a dashboard so that the "
-             "results can be easily visualised. \n\n"
-             "The client also asks for data privacy to be observed, "
-             "in that the data from the project not be "
-             "shared with anyone not involved with the project.\n\n")
+             "results can be easily visualised. \n\n")
 
     st.subheader("Business Case")
 
@@ -37,10 +34,7 @@ def page_summary_body():
             "mildew or lack thereof in "
             "cherry leaves with a greater than 97% accuracy\n\n"
             "2. Create a dashboard to display the results "
-            "in a simple and clear way\n\n"
-            "3. Data is provided under an NDA, and only those "
-            "involved in the project can "
-            "have access to it")
+            "in a simple and clear way\n\n")
 
     st.write("Successful completion of the project will speed up "
              "the client's testing process and allow them to "

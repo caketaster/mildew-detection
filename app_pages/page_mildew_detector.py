@@ -14,10 +14,12 @@ from src.machine_learning.predictive_analysis import (
 def page_mildew_detector_body():
     st.write("Using the app below, cherry leaf images can be uploaded "
              "to check the ML model. ")
-    st.write("The label probability will be given to 2 decimal points."
+    st.write("The label probability between zero and one will be "
+             "given to 2 decimal points, with a higher value "
+             "meaning higher confidence in the prediction. "
              "You can hover over the bar chart to find the "
              "more precise value.")
-    st.write("**Please upload only .jpg or .jpeg images**")
+    st.write("**Please upload only .jpg or .jpeg images**" )
     st.info("An image set of healthy and mildew infected leaves can be "
             "downloaded for live prediction. "
             "Images can be downloaded from "

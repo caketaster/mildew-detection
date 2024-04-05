@@ -1,6 +1,6 @@
 # Cherry Leaves Mildew Detection
 
-The deployed app can be accessed [here](https://mildew-detection-bn-f2c139f5e8bd.herokuapp.com/)
+The deployed app can be accessed here: [Mildew Detection](https://mildew-detection-bn-f2c139f5e8bd.herokuapp.com/)
 
 ## Introduction
 Farmy & Foods have a mildew problem. Their cherry plantation operations have a growing powdery mildew issue. Powdery mildew, a fungal disease that affects many plant species, typically starts off as small white circular spots on the surface of leaves, and as the mildew progresses the spots may expand to cover the entire surface of each leaf. Infected leaves may become distorted, curl and fall from the tree. The disease deprives plants of water and nutrients, impacting their growth, blooming and development. 
@@ -56,7 +56,7 @@ For Business Requirement 2 (The client requires a dashboard to view the results)
 - The dashboard will further include a more technical page mainly for data analysts.
 
 ## ML Business Case
-The client's needs will guide the interface presentation chosen. In terms of the app: (LO2, LO4, LO6)
+The client's needs will guide the interface presentation chosen. In terms of the app: 
 - We are aware that we have to predict between 2 labels, so a binary classification model is required. Models will be created and trained as such.
 - Uploading of multiple images at a time will speed up the testing process for the client.
 - The probability of correct prediction for each image (in graph from) will be helpful. In cases where confidence in the prediction is low, the client can then choose to look more carefully at the leaf and possibly 'override' the prediction made by the ML model (i.e. by applying treatment to a tree that the model has predicted is healthy, but with low confidence). 
@@ -143,6 +143,7 @@ The architecture and logic for the model is presented below.
 ## Explanation and logical basis for models
 ### Softmax Activation Function Model
 Softmax models are most often used for [multi-]categorical classification tasks where there are 3 or more categories to be distinguished between ('is this image a tree, lampost or traffic light', 'is this image a house, apartment or shed' etc). The model requires these classifications to be encoded as digits [0, 1, 2 etc] and the output is a probability of one of these digits, which we can then translate back into more easily understood language. Softmax models can, of course, also be used for binary classification tasks such as the project we're working on. <br><br>
+Convolution layers are used to select dominant pixel values from the non-dominant pixels in images using filters, and max-pooling layers reduce the size of images by extracting only the dominant pixels within the pool size. This reduced image only contains the dominant features of the image. The combination of these two layers removes the nonessential part of the image and reduces complexity, therefore providing more accuracy. <br><br>
 The model starts off with a relatively simple input layer and increases in complexity through the model (filters increasing from 32 to 64 to 128). Kernel size is varied to search for features at differing resolutions. Max Pooling is set to (2,2) or (3,3) in early layers, but in the final 2 convolutional layers to (1,1), which has no effect on spatial dimensions, effectively scanning the entire image with no reduction in size. <br><br>
 A small dropout layer is introduced after several layers (0.1 = 10%) to introduce randomness by randomly dropping a percentage of neurons. I was worried that with a relatively deep model there was a danger of overfitting, so thought it wise to include 2 dropout layers, albeit dropping out at a relatively low level (0.1 and 0.3). <br><br>
 Activation on every layer was ReLu as through extensive testing it seemed to perform the best, but in the final convolutional layer I used a tanh layer to capture more nuanced patterns. Multiple different activation layers were tested, tanh and relu consistently gave the best results. <br>
@@ -266,12 +267,19 @@ User stories were created using GitHub's kanban board. All user stories were sat
 
 ### Libraries and packages
 - [Numpy](https://numpy.org/doc/) (numpy==1.19.2)
+--> convert figures to arrays
 - [Pandas](https://pandas.pydata.org/docs/) (pandas==1.1.2)
+--> create and save dataframes
 - [Scikit-Learn](https://scikit-learn.org/stable/index.html) (scikit-learn==0.24.2)
+--> for model evaluation
 - [Tensorflow](https://www.tensorflow.org/api_docs) (tensorflow-cpu==2.6.0)
+--> for creating the models
 - [Seaborn](https://seaborn.pydata.org/) (seaborn==0.11.0)
+--> to create montage
 - [MatPlotLib](https://matplotlib.org/stable/index.html) (matplotlib==3.3.1)
+--> to plot set distribution
 - [Plotly](https://plotly.com/python/) (plotly==4.12.0)
+--> to plot learning curve
 
 ## Credits 
 ### Content
@@ -279,63 +287,6 @@ User stories were created using GitHub's kanban board. All user stories were sat
 - Learning rate information was gained from [the Neptune AI blog](https://neptune.ai/blog/how-to-choose-a-learning-rate-scheduler), and [machinelearningmastery](https://machinelearningmastery.com/using-learning-rate-schedules-deep-learning-models-python-keras/)
 - Confusion Matrix code was adapted from [marsja.net](https://www.marsja.se/seaborn-confusion-matrix-how-to-plot-and-visualize-in-python/) 
 
-
-- The text for the Home page was taken from Wikipedia Article A.
-- Instructions on how to implement form validation on the Sign-Up page were taken from [Specific YouTube Tutorial](https://www.youtube.com/).
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/).
-
 ### Media 
 - The CRISP-DM image used in the readme was taken from [researchgate.net](https://www.researchgate.net/publication/341627969_CSMAS_Improving_Multi-Agent_Credit_Scoring_System_by_Integrating_Big_Data_and_the_new_generation_of_Gradient_Boosting_Algorithms)
 - The photos used for the app detector are from Google Image Search (keywords: cherry leaf, cherry leaf mildew).
-
-
-
-
-
-
-# TO DO
-- credits and acknowledgements
-- do a bit of refactoring and add more notes to functions
-
-
-
-Think: CRISP-DM, AGILE - justify decisions made using these frameworks
-model: tested: adam, adagrad, SGD, Adadelta, Nadam, RMSProp
-
-quote from video (re: base CI model for malaria detection): Convolution layers are used to select the dominant pixel value
-from the non-dominant pixels in images using filters whereas the max-pooling layers reduce
-the size of image by extracting only the dominant pixels within the pool size. This reduced image
-only contains the dominant feature of the image. The combination of these two layers removes
-the nonessential part of the image and reduces complexity, therefore providing more accuracy.
-Here, in our model, we have used filters of a 3 by 3 matrix and their numbers are varied from
-32 to 64, the pool size for the max-pooling layer is a 2 by 2 matrix. The input image shape in the
-first convolution layer is served as the average image shape from the data visualization video.
-As well as this, the flatten layer is used to flatten the matrix into a vector,
-which means a single list of all values, and to
-feed it into a dense layer. The dense layer then does the mathematical operation
-and gives the output. In our model, we have used 128 nodes in one of our Dense layers,
-and 1 node in the output dense layer, because we want single output at a time using the sigmoid
-activation function. This output activation function defines the probabilistic result.
-Finally, the Dropout layer is used in this network to drop 50 percent of the nodes
-to avoid overfitting the model.
-We use a combination of all these layers to develop a convolution neural network,
-which we will use in the final prediction tasks.
-The activation function in the output layer is sigmoid. The loss, optimizer,
-and metrics used in the model compiler are binary cross-entropy, adam, and accuracy respectively.
-These three hyperparameters along with the activation function of the output layer
-which control the classification and regression problems.
-
-tweaking: relu, adam, kernel_size, filters
-> For binary classification, we use binary cross-entropy as the loss function,
-*adam, rmspro, SGD or any other function as an optimizer* and accuracy as metrics, along
-with sigmoid as an activation function in the output layer (1 node instead of the 2 needed for softmax).
-
-Hyperparameters tune the model parameters so that we can control the performance of the model.
-In our model, we have used dropout, loss, optimizer, and nodes in the dense layer as
-the hyperparameter that can be tuned to control the model performance. However, *the selection
-of the optimum hyperparameter value is a trial and error type method. Hence, we use different model
-tuning functions present in the Keras packages.* I recommend reading more about hyperparameter
-tuning in TensorFlow and Keras on your own and trying to tune models later to see their effect.
-One more piece of information about convolution neural network performance tuning is that
-*we use transfer learning techniques which are trained layers of neural networks. Read more
-about transfer learning on Tensorflow and Keras documentation to learn more about this technology*.
