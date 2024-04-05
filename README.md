@@ -13,6 +13,43 @@ With this in mind, a machine learning system has been proposed to detect powdery
 ## Dataset
 The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprises of over 4200 cherry leaf images from Farmy & Foods, pre-labelled *healthy* [uninfected] or *powdery mildew* [infected with mildew]. 
 
+## Table of Contents
+- [Introduction](#introduction)
+- [Dataset](#dataset)
+- [Table of Contents](#table-of-contents)
+- [Business Case Assessment](#business-case-assessment)
+   * [Business requirements:](#the-business-requirements-are)
+   * [Benefit for the client:](#the-benefit-for-the-client-is)
+   * [Data analyst steps:](#the-data-analyst-will-therefore)
+- [Hypothesis and Validation:](#hypothesis-and-validation)
+- [Rationale to map Business Requirements to Data Visualisations & ML tasks](#rationale-to-map-business-requirements-to-data-visualisations-ml-tasks)
+- [ML Business Case](#ml-business-case)
+- [Workflow](#workflow)
+- [Dashboard design: ](#dashboard-design)
+- [Notebooks](#notebooks)
+- [Explanation and logical basis for models](#explanation-and-logical-basis-for-models)
+   * [Softmax Activation Function Model](#softmax-activation-function-model)
+   * [Sigmoid Activation Function Model](#sigmoid-activation-function-model)
+- [Model Performance](#model-performance)
+   * [Conclusion](#conclusion)
+- [User Stories](#user-stories)
+- [Future Features](#future-features)
+- [Testing](#testing)
+- [Bugs](#bugs)
+- [Deployment ](#deployment)
+   * [Heroku](#heroku)
+- [Main Data Analysis and Machine Learning Libraries](#main-data-analysis-and-machine-learning-libraries)
+   * [Languages used:](#languages-used)
+   * [IDE](#ide)
+   * [Repository](#repository)
+   * [Notebook code environment](#notebook-code-environment)
+   * [Dashboard](#dashboard)
+   * [Hosting](#hosting)
+   * [Dataset](#dataset-1)
+   * [Libraries and packages](#libraries-and-packages)
+- [Credits ](#credits)
+   * [Content](#content)
+   * [Media ](#media)
 
 ## Business Case Assessment
 ### The business requirements are:
@@ -286,6 +323,7 @@ User stories were created using GitHub's kanban board. All user stories were sat
 - The project was based on [Code Institute's Malaria Detection project](https://github.com/Code-Institute-Solutions/WalkthroughProject01), and much of the initial code and the steps taken were adapted from this project. 
 - Learning rate information was gained from [the Neptune AI blog](https://neptune.ai/blog/how-to-choose-a-learning-rate-scheduler), and [machinelearningmastery](https://machinelearningmastery.com/using-learning-rate-schedules-deep-learning-models-python-keras/)
 - Confusion Matrix code was adapted from [marsja.net](https://www.marsja.se/seaborn-confusion-matrix-how-to-plot-and-visualize-in-python/) 
+- The Table of Contents was generated [from here](https://derlin.github.io/bitdowntoc/)
 
 ### Media 
 - The CRISP-DM image used in the readme was taken from [researchgate.net](https://www.researchgate.net/publication/341627969_CSMAS_Improving_Multi-Agent_Credit_Scoring_System_by_Integrating_Big_Data_and_the_new_generation_of_Gradient_Boosting_Algorithms)
