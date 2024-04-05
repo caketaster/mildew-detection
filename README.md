@@ -40,7 +40,7 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 
 The initial hypothesis can be confirmed by the fact that manual visual differentiation already occurs at Farmy & Foods (albeit at a slow and hard to scale level).
 
-The second hypothesis was be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. An accuracy rate of 99.7+% was reached with one of the models trained, and 97.7+% with the other. 
+The second hypothesis will be tested through extensive training of an ML model with the aim of accurate differentiation of healthy/infected leaves at the highest possible accuracy rate. 
 
 ## Rationale to map Business Requirements to Data Visualisations & ML tasks
 In terms of Business Requirement 1 (To paraphrase: The client requires a method of differentiating between healthy and mildew infected leaves at a greater than 97% accuracy):
@@ -59,7 +59,7 @@ For Business Requirement 2 (The client requires a dashboard to view the results)
 The client's needs will guide the interface presentation chosen. In terms of the app: (LO2, LO4, LO6)
 - We are aware that we have to predict between 2 labels, so a binary classification model is required. Models will be created and trained as such.
 - Uploading of multiple images at a time will speed up the testing process for the client.
-- The probability of correct prediction for each image (in graph from) will be helpful. In cases where confidence in the prediction is low, the client can then choose to look more carefully at the leaf and possibly 'override' the prediction made by the ML model. 
+- The probability of correct prediction for each image (in graph from) will be helpful. In cases where confidence in the prediction is low, the client can then choose to look more carefully at the leaf and possibly 'override' the prediction made by the ML model (i.e. by applying treatment to a tree that the model has predicted is healthy, but with low confidence). 
 - A downloadable report will enable easy sharing of results. For example workers in the field can send photos to a central database for testing, and the reports can be sent back to them to enable immediate treatment, if needed. <br>
 
 All other data presented should support the business case, showing that leaves are visually different (with the montages and average/difference images), and showing the utility of the model used (with the fitting process graphs). 
@@ -83,31 +83,38 @@ This addresses how the data will be organised for modelling. In this case the da
 The modelling techniques used must be decided upon. Binary classification makes sense as we're only looking at 2 classes. Both Softmax and Sigmoid models are able to parse binary classification. Two models will be created to test which model does it best before moving forward with the more accurate model for deployment. Within each model I will stack layers of filters within a CNN (Convolutional Neural Network), and tune hyperparameters to get the highest accuracy rating possible.
 
 - **Evaluation** <br>
-Model performance will be evaluated to see if it matches (or indeed exceeds) the business requirements. Dashboard design must also be evaluated to make sure it's simple and clear. All required functionality (e.g. image montage, live detection app) should be present and working.
+Model performance will be evaluated to see if it matches (or indeed exceeds) the business requirements. Dashboard design must also be evaluated to make sure it's simple and clear. All required functionality (e.g. image montage, live detection app) should be present, tested and working.
 
 - **Deployment** <br>
 Once the project is evaluated and found to be ready for use, it will be deployed to Heroku for ease of access.
 
-The modelling and evaluation stages were performed iteratively, testing, evaluating then re-modelling and testing.
+The modelling and evaluation stages were performed iteratively, testing, evaluating then re-modelling and testing, as per standard CRISP-DM methodology.
 
 ## Dashboard design: 
-The Streamlit dashboard contains 5 pages: ~~ screenshots
+The Streamlit dashboard contains 5 pages: 
 
 - ### Project summary page
-The project is here briefly summarised for the reader or client
+The project is here briefly summarised for the reader or client.
+<br>![project summary page](media/readme/streamlit_summary.jpg)<br>
 
 - ### Project hypothesis page
 The main hypothesis is stated and brief information given on how it was validated.
+<br>![project hypothesis page](media/readme/streamlit_hypothesis.jpg)<br>
 
 - ### Visual differentiation page
 This page contains information related to the Data Visualisation step of the project, showing a montage for healthy/mildew infected leaves on request, and average/difference images of both healthy and infected leaves.
+<br>![project visual differentiation page](media/readme/streamlit_visualiser_1.jpg)<br>
+<br>![project visual differentiation page](media/readme/streamlit_visualiser_2.jpg)<br>
 
 - ### Live detection app page
-Using the download link, the user can download the entire dataset used in training and testing the presented model. The user must then be able to upload single or multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present. A downloadable table with the results must also be available.
+Using the download link, the user can download the entire dataset used in training and testing the presented model. The user must then be able to upload single or multiple images, and for each image a prediction statement [healthy/unhealthy] plus the probability of correct prediction should be present, in both graph and numerical form. A downloadable table with the results must also be available.
+<br>![project detector page](media/readme/streamlit_detector_1.jpg)<br>
+<br>![project detector page](media/readme/streamlit_detector_2.jpg)<br>
 
 - ### ML Performance Metrics page
 Here the more technical aspects of the project will be discussed, including the preparation steps taken and how the models performed.
-
+<br>![project performance metrics page](media/readme/streamlit_metrics_1.jpg)<br>
+<br>![project performance metrics page](media/readme/streamlit_metrics_2.jpg)<br>
 
 ## Notebooks
 The project contains 4 Jupyter notebooks.
@@ -117,8 +124,8 @@ This notebook is where the dataset is downloaded from Kaggle, uploaded to GitPod
 - ### Data Visualisation
 Images are resized and put in an array for modelling. The image_shape.pkl is created. An image montage, plus average and difference images are produced for each label.
 
-![montage: healthy](media/readme/montage_healthy.jpg)<br>
-![montage: mildew infected](media/readme/montage_mildew.jpg)<br><br>
+![truncated montage: healthy](media/readme/montage_healthy.jpg)<br>
+![truncated montage: mildew infected](media/readme/montage_mildew.jpg)<br><br>
 ![average/difference: healthy](outputs/v1/avg_diff_healthy.png)<br>
 ![average/difference: infected](outputs/v1/avg_diff_powdery_mildew.png)
 
@@ -140,12 +147,12 @@ The model starts off with a relatively simple input layer and increases in compl
 A small dropout layer is introduced after several layers (0.1 = 10%) to introduce randomness by randomly dropping a percentage of neurons. I was worried that with a relatively deep model there was a danger of overfitting, so thought it wise to include 2 dropout layers, albeit dropping out at a relatively low level (0.1 and 0.3). <br><br>
 Activation on every layer was ReLu as through extensive testing it seemed to perform the best, but in the final convolutional layer I used a tanh layer to capture more nuanced patterns. Multiple different activation layers were tested, tanh and relu consistently gave the best results. <br>
 A Flatten layer is then used to convert the 3D feature map into a 1D array to be fed into the fully-connected Dense layer, followed by the second dropout layer (0.3). <br>
-The output layer was, of course, Softmax. <br><br>
+The output layer was, of course, Softmax activation. <br><br>
 The model was compiled with loss set to binary_crossentropy, optimizer set to Adam (Adaptive Moment Estimation), and the metrics as accuracy. <br>
 
 I tested thoroughly with a categorical_crossentropy loss setting but couldn't replicate the accuracy from binary_crossentropy. Multiple optimizers were tested including RMSProp, SGD, Adagrad but Adam returned the best accuracy. <br><br>
-As I had resized my images down to 80x80px the number of parameters was relatively small. Although there's no 'right' answer for how many parameters to aim for, I had seen models using anything from 400,000 to 2.7 million parameters. I thought it prudent to aim for a minimum of 500,000, and added convolutional layers until I felt I had a reasonable amount (ultimately, 679,554 parameters). <br>
-The accuracy of the model (97.75%) tells me that I certainly had enough parameters to work with. It would be interesting to remove layers and test with a far lower number of parameters to see if I could maintain accuracy, though for this project I didn't have the time or need to do so once I'd hit such a high level of accuracy. <br>
+As I had resized my images down to 80x80px the number of parameters was relatively small. Although there's no 'right' answer for how many parameters to aim for, I had seen models using anything from 400,000 to 3 million-plus parameters. I thought it prudent to aim for a minimum of 500,000, and added convolutional layers until I felt I had a reasonable amount (ultimately, 679,554 parameters). <br>
+The accuracy of the model (97.75%) tells me that I certainly had enough parameters to work with. It would be interesting to remove layers and test with a far lower number of parameters to see if I could maintain accuracy, though for this project I didn't have the time or need to do so once I'd hit a required level of accuracy. <br>
 Early stopping was set to 4 to stop the model once it wasn't improving any more, and epochs [cycles through the training data] were set to 30, although the model completed the fitting process after 22 epochs.
 
 ![Softmax model architecture](media/readme/softmax_model.jpg)<br>
@@ -160,7 +167,7 @@ A Flatten layer feeds into the Dense layer, and then there's a relatively large 
 Naturally, loss is set to binary_crossentropy, the optimizer is set to Nadam and metrics to accuracy. <br><br>  
 I tested several optimizers (including RMSProp, SGD, Adam) for this model, and settled on Nadam (Nesterov-accelerated Adaptive Moment Estimation). none of the other optimizers were as accurate for me. <br><br>
 Also included within the model is a learning rate scheduler. The idea was to have the model fine-tune its learning as it passed through the epochs after making relatively large updates to its parameters to get into the right ballpark for accuracy in the early epochs. An initial learning rate of 1e-3 [0.001] is fairly standard (not too large or small), and the learning rate scheduler reduced this rate by 10% after each 8 epochs, which means an exponential decrease after a looping through the 8 epoch set enough times. <br><br>
-Early stopping was set to 5 to allow the to complete more cycles. I was confdent enough that the model would not overfit at this early stopping setting.
+Early stopping was set to 5 to allow the model to complete more cycles. I was confdent enough that the model would not overfit at this early stopping setting. <br>
 Epochs were set to 40, but the model completed its training in 28 epochs, where early stopping stepped in to conclude the fitting process.
 
 ![Sigmoid model architecture](media/readme/sigmoid_model.jpg)<br>
@@ -187,7 +194,7 @@ As can be seen, these criteria hold true for both models.
 ![Sigmoid training: loss](outputs/v1/model_training_losses_sigmoid.png)<br><br>
 
 ### Conclusion
-Both models displayed a _**normal**_ fit with both accuracy and loss improving significantly during training. Validation set data closely mirrored training set data, and actually appeared to be more accurate than the training data in the Softmax model. Neither model exhibited evidence of overfitting. Accuracy was slightly better on the Sigmoid optimizer model, therefore this is the model used in live prediction in the app.
+Both models displayed a _**normal**_ fit with both accuracy and loss improving significantly during training. Validation set data closely mirrored training set data, and actually appeared to be more accurate than the training data in the Softmax model. Neither model exhibited evidence of overfitting. Accuracy was slightly better on the Sigmoid activation function model, therefore this is the model used in live prediction in the app.
 
 ## User Stories
 User stories were created using GitHub's kanban board. All user stories were satisfied before project deployment. <br>
@@ -206,7 +213,7 @@ User stories were created using GitHub's kanban board. All user stories were sat
 - The mildew detector app in Streamlit was tested on a variety of images from Google Image search - 8 clearly healthy images, and 6 mildew infected images (available in the project under media/readme/healthy_test and media/readme/mildew_test). For the majority of images the detector worked as planned, but one image from each set was incorrectly diagnosed:<br>
 ![actually healthy](media/readme/test_error_1.jpg)<br>
 ![actually mildew infected](media/readme/test_error_2.jpg)<br>
-- These tests show flaws in either the data or the model, in my opinion more likely the data. The dataset images tend to have a very similar background - images are taken on a fairly regular background (a table?) with pretty regular lighting. If this is not available in the field and workers are sending images with irregular backgrounds with mixed lighting, this could compromise the accuracy of the model. 
+- These tests show flaws in either the data or the model, in my opinion more likely the data. The dataset images tend to have a very similar background - images are taken on a fairly regular background (a table?) with pretty regular lighting. If this is not available in the field and workers are sending images with irregular backgrounds and/or mixed lighting, this could compromise the accuracy of the model. 
 - Many bugs came up during the process. For example, the models would not work with the same augmented images - finally solved once I worked out I had to change a variable in the augmentation process, which eventually led me to splitting the Modelling and Evaluation notebook into 2 separate notebooks for clarity.
 - On testing within the Modelling and Evaluation notebook, the Softmax model was predicting very confidently the exact opposite label to what was required, owing to the different ways the models deal with predictions. I had assumed my model was fundamentally flawed, but eventually realised I could make minor edits to the prediction_class variable and fix the issue.
 - The detector could not deal with .png images. As all images in the dataset are .jpg I didn't feel it was worth it to try and get .pngs working, but I did alter the instructions to tell the user to only upload .jpg or .jpeg images. This may be classed as an unfixed bug _if_ .png images need to be uploaded in the future.
@@ -260,8 +267,7 @@ User stories were created using GitHub's kanban board. All user stories were sat
 - [Plotly](https://plotly.com/python/) (plotly==4.12.0)
 
 ## Credits 
-
-~~ Not done yet
+The project was based on [Code Institute's Malaria Detection project](https://github.com/Code-Institute-Solutions/WalkthroughProject01), and much of the code and the steps taken were adapted from this project. 
 ~~ Learning rate
 
 * In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism. 
@@ -281,16 +287,6 @@ The project was inspired largely by the Malaria Detection walkthrough project, a
 ## Acknowledgements (optional)
 * Thank the people that provided support throughout this project.
 
-
-
-
-
-
-n.b.
-## ML Business Case
-* In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
-
-- need to check course materials
 
 
 
