@@ -25,7 +25,7 @@ The [dataset](https://www.kaggle.com/codeinstitute/cherry-leaves) input comprise
 - [Rationale to map Business Requirements to Data Visualisations & ML tasks](#rationale-to-map-business-requirements-to-data-visualisations-ml-tasks)
 - [ML Business Case](#ml-business-case)
 - [Workflow](#workflow)
-- [Dashboard design: ](#dashboard-design)
+- [Dashboard design](#dashboard-design)
 - [Notebooks](#notebooks)
 - [Explanation and logical basis for models](#explanation-and-logical-basis-for-models)
    * [Softmax Activation Function Model](#softmax-activation-function-model)
@@ -125,9 +125,9 @@ Model performance will be evaluated to see if it matches (or indeed exceeds) the
 - **Deployment** <br>
 Once the project is evaluated and found to be ready for use, it will be deployed to Heroku for ease of access.
 
-The modelling and evaluation stages were performed iteratively, testing, evaluating then re-modelling and testing, as per standard CRISP-DM methodology.
+The modelling and evaluation stages are performed iteratively, testing, evaluating then re-modelling and testing, as per standard CRISP-DM methodology.
 
-## Dashboard design: 
+## Dashboard design 
 The Streamlit dashboard contains 5 pages: 
 
 - ### Project summary page
@@ -273,12 +273,12 @@ User stories were created using GitHub's kanban board. All user stories were sat
 
 1. Log in to Heroku and create a new App.
 2. Give the app a unique name and select region.
-3. At the Deploy tab, select GitHub as the deployment method.
-4. Select the repository name (mildew-detection) and click Search. Once found, click Connect.
+3. At the Deploy tab, select _GitHub_ as the deployment method.
+4. Select the repository name (mildew-detection) and click Search. Once found, click _Connect_.
 5. Select the Main branch to deploy.
 6. Select _automatic deploy_ to allow the app to update automatically each time you git push.
-7. Click Deploy Branch to build the app.
-5. Click now the button Open App on the top of the page to access the App.
+7. Click _Deploy Branch_ to build the app.
+5. Click now the button _Open App_ on the top of the page to access the App.
 
 ## Main Data Analysis and Machine Learning Libraries
 ### Languages used:
@@ -322,8 +322,11 @@ User stories were created using GitHub's kanban board. All user stories were sat
 ### Content
 - The project was based on [Code Institute's Malaria Detection project](https://github.com/Code-Institute-Solutions/WalkthroughProject01), and much of the initial code and the steps taken were adapted from this project. 
 - Learning rate information was gained from [the Neptune AI blog](https://neptune.ai/blog/how-to-choose-a-learning-rate-scheduler), and [machinelearningmastery](https://machinelearningmastery.com/using-learning-rate-schedules-deep-learning-models-python-keras/)
+- Background knowledge and basics were learnt from [Working with Predictive Analytics](https://www.linkedin.com/learning/python-working-with-predictive-analytics)
+- Extra information on CNNs was taken from[Neural Networks and Convolutional Neural Networks Essential Training](https://www.linkedin.com/learning/neural-networks-and-convolutional-neural-networks-essential-training/)
+- Ideas and information on training CNNs was also taken from [Training Neural Networks in Python](https://www.linkedin.com/learning/training-neural-networks-in-python-17058600/creating-a-neural-network-in-python?u=244845242)
 - Confusion Matrix code was adapted from [marsja.net](https://www.marsja.se/seaborn-confusion-matrix-how-to-plot-and-visualize-in-python/) 
-- The Table of Contents was generated [from here](https://derlin.github.io/bitdowntoc/)
+- The Table of Contents was generated this [Table of Contents Generator](https://derlin.github.io/bitdowntoc/)
 
 ### Media 
 - The CRISP-DM image used in the readme was taken from [researchgate.net](https://www.researchgate.net/publication/341627969_CSMAS_Improving_Multi-Agent_Credit_Scoring_System_by_Integrating_Big_Data_and_the_new_generation_of_Gradient_Boosting_Algorithms)
