@@ -28,6 +28,7 @@ def page_mildew_detector_body():
 
     st.write("---")
 
+    # image uploader
     upload_img = st.file_uploader("Upload leaf image(s). You may "
                                   "upload more than one at a time.",
                         type=['jpg', 'jpeg'], accept_multiple_files=True)  # noqa
@@ -35,13 +36,13 @@ def page_mildew_detector_body():
     if upload_img is not None:
         analysis_report = pd.DataFrame([])
         for image in upload_img:
-
+            
+            version = 'v1'
             img_pil = Image.open(image)
             st.info(f"Leaf image: **{image.name}**")
             img_array = np.array(img_pil)
             st.image(img_pil, caption=f"Image Size: {img_array.shape[1]}px width x {img_array.shape[0]}px height")  # noqa
 
-            version = 'v1'
             resized_img = resize_input_image(img=img_pil, version=version)
             pred_probability, pred_class = load_model_and_predict(resized_img, version=version)  # noqa
             plot_predictions_probabilities(pred_probability, pred_class)
@@ -49,6 +50,7 @@ def page_mildew_detector_body():
             analysis_report = analysis_report.append({'Image': image.name, 'Result': pred_class, 'Probability': pred_probability},  # noqa
                                 ignore_index=True)
 
+        # analysis report
         if not analysis_report.empty:
             st.success("Analysis Report")
             st.table(analysis_report)

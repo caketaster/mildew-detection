@@ -4,10 +4,10 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from matplotlib.image import imread
 
-import itertools
+from matplotlib.image import imread
 import random
+import itertools
 
 
 def page_leaf_visualiser_body():
@@ -54,7 +54,8 @@ def page_leaf_visualiser_body():
         st.warning("The variability images show that there are clear "
                    "features that differentiate healthy and "
                    "mildew infected leaves. Healthy leaves appear to "
-                   "be more regular in shape")
+                   "be of a more uniform colour across the leaf when "
+                   "looking at the central part of each image ")
 
         st.write("---")
         st.info("**Explanation of terms**\n\n"
@@ -70,7 +71,7 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 8)):
     # Subset the class to display
     if label_to_display in labels:
 
-      # Checks if the montage space is greater than subset size
+      # Check if montage space is greater than subset size
       images_list = os.listdir(dir_path + '/' + label_to_display)
       if nrows * ncols < len(images_list):
           img_idx = random.sample(images_list, nrows * ncols)
@@ -81,12 +82,12 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 8)):
               f"You requested a montage with {nrows * ncols} spaces")
           return
 
-      # Create list of axes indices based on nrows and ncols
+      # List of indices based on nrows and ncols
       list_rows = range(0, nrows)
       list_cols = range(0, ncols)
       plot_idx = list(itertools.product(list_rows, list_cols))
 
-      # Create figure and display images
+      # Create and display plots
       fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize)
       for x in range(0, nrows*ncols):
           img = imread(dir_path + '/' + label_to_display + '/' + img_idx[x])
@@ -96,7 +97,6 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(10, 8)):
           axes[plot_idx[x][0], plot_idx[x][1]].set_xticks([])
           axes[plot_idx[x][0], plot_idx[x][1]].set_yticks([])
       plt.tight_layout()
-
       st.pyplot(fig=fig)
       plt.show()
 

@@ -262,6 +262,7 @@ User stories were created using GitHub's kanban board. All user stories were sat
 - Many bugs came up during the process. For example, the models would not work with the same augmented images - finally solved once I worked out I had to change a variable in the augmentation process, which eventually led me to splitting the Modelling and Evaluation notebook into 2 separate notebooks for clarity.
 - On testing within the Modelling and Evaluation notebook, the Softmax model was predicting very confidently the exact opposite label to what was required, owing to the different ways the models deal with predictions. I had assumed my model was fundamentally flawed, but eventually realised I could make minor edits to the prediction_class variable and fix the issue.
 - The detector could not deal with .png images. As all images in the dataset are .jpg I didn't feel it was worth it to try and get .pngs working, but I did alter the instructions to tell the user to only upload .jpg or .jpeg images. This may be classed as an unfixed bug _if_ .png images need to be uploaded in the future.
+- The favicon for my Streamlit dashboard doesn't seem to be working. As this is so minor I did not look into fixing it.
 - Other errors were generally fixed iteratively as they occurred and were not recorded.
 
 ## Deployment 
