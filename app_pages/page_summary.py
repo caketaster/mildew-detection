@@ -47,5 +47,5 @@ def page_summary_body():
              "of cherry leaves, pre-labelled *healthy* or "
              "*powdery_mildew* for the developer to "
              "use to create the model. \n\n"
-             "The dataset can be found "
-             "[here](https://www.kaggle.com/codeinstitute/cherry-leaves)")
+             "The dataset can be seen on "
+             "[Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves)")
